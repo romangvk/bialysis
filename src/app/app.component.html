@@ -1,24 +1,41 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<!-- WE ARE NOW INSIDE APP-ROOT/app.component.ts-->
-<div align="center" z-index="1" position="absolute">
-  <label>
-    <input [value]="search" (input)="search = $event.target.value" placeholder="Topic to Analyze">
-  </label>
-
-  <ul class="sources">
-    <div *ngIf="sources">
-      <li *ngFor="let key of objectkeys(sources)">
-        <!-- let newsource of function, create an array of mapped/iterable thing we want to display as newsource-->
-        <span>{{key}}</span>
-        <span>{{sources[key].results}}</span>
-      </li>
-    </div>
-    <!-- FOR EACH SOURCE IN THE ARRAY, SEND RESPONSE DATA TO A NEW RESULT BOX -->
-    <input [value]="newsource" (input)="newsource = $event.target.value" placeholder="New Source">
-    <br>
-    <button (click)="addSource(newsource)">Add Another Source</button>
-  </ul>
-
-  <input type=button (click)="analyzeAll()" value="Analyze">
-
+<div align=center style="background-color: rgb(44, 44, 44); padding:20px">
+  <button (click)="reload(" mat-button style="padding:50px; margin:20px; font-size:80px; color:aliceblue">
+    Bialysis
+  </button>
+  <span>
+    <mat-card style="width:70%">
+      <mat-form-field style="width:100%">
+        <input matInput placeholder="Search for a topic...">
+      </mat-form-field>
+    </mat-card>
+    <button mat-raised-button style="padding:20px; margin:20px; display:inline-block" (click)="analyzeAll()">
+      <mat-icon>send</mat-icon>
+    </button>
+  </span>
+  <mat-grid-list cols=3 rowHeight="3:2">
+    <mat-grid-tile *ngFor="let source of objectkeys(sources)" colspan=1 rowspan=1>
+      <mat-card style="width:60%">
+        <mat-card>
+          <div style="font-size:20px;">
+            <mat-spinner *ngIf="loading"></mat-spinner>
+            {{sources[source].results}}
+          </div>
+        </mat-card>
+        {{source}}
+        <button (click)="removeSource(source)" mat-icon-button color="accent">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile colspan=1 rowspan=1>
+      <mat-card style="width:60%">
+        <mat-form-field>
+          <input [value]="newsource" (input)="newsource = $event.target.value" matInput placeholder="Add a source...">
+        </mat-form-field>
+        <button *ngIf="newsource.length > 0" (click)="click(newsource)" mat-fab color="accent" style="margin:20px">
+          <mat-icon>add</mat-icon>
+        </button>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
 </div>
