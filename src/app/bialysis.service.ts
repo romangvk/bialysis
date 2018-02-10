@@ -50,7 +50,7 @@ export class BialysisService {
   bialysis(topic, source) {
     return new Promise((resolve, reject) => {
       let promises = [];
-      this.getarticles(topic, source).then((response) => {
+      this.getarticles(topic, source).then((response : any) => {
         for (var i = 0; i < response.items.length; i++) {
           console.log(response.items[i].link);
           promises.push(new Promise((resolve, reject) => {
