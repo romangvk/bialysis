@@ -5,7 +5,14 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { BialysisService } from './bialysis.service';
 import { HttpClientModule } from '@angular/common/http';
-
+import { BrowserAnimationsModule } '@angular/platform-browser/animations';
+import { MatInputModule } from '@angular/material';
+import { MatCardModule } from '@angular/material/card';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatChipsModule } from '@angular/material/chips';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -13,7 +20,15 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatInputModule,
+    MatCardModule,
+    MatGridListModule,
+    MatButtonModule,
+    MatIconModule,
+    MatChipsModule,
+    MatProgressSpinnerModule
   ],
   providers: [BialysisService],
   bootstrap: [AppComponent]

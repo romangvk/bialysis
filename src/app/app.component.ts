@@ -3,18 +3,19 @@ import { BialysisService } from './bialysis.service';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  templateUrl: './app.component.html'
 })
 export class AppComponent {
   search;
   sources;
   newsource;
+  loading;
 
   constructor(private bialysis: BialysisService) {
     this.search = null;
     this.sources = {};
     this.newsource = "";
+    this.loading = false;
   }
   // ngOnInit() {
   //   this.bialysis.bialysis('poptart', 'washingtonpost.com').then((response) => {
@@ -25,8 +26,15 @@ export class AppComponent {
   //     console.log(response);
   //   });
   // }
+  click(source) {
+    this.addSource(source);
+    this.newsource = "";
+  }
   objectkeys(object) {
     return Object.keys(object);
+  }
+  reload() {
+    window.location.reload();
   }
   addSource(source) {
     this.sources[source] = {};
@@ -47,22 +55,25 @@ export class AppComponent {
       avg += results[result].documentSentiment.score;
     }
     avg /= numresults;
-    this.sources[source].results = avg;
+    this.sources[source].results = avg*20;
   }
   analyze(source) {
-    // if (this.bialysis.hasarticles(this.search, source)) {
-    //   console.log("testing local db");
-    //   this.bialysis.test(this.search, source).then((response) => {
-    //     console.log(response);
-    //     this.updateResults(source, response);
-    //   });
-    // } else {
+    this.loading = true;
+    if (this.bialysis.hasarticles(this.search, source)) {
+      console.log("testing local db");
+      this.bialysis.test(this.search, source).then((response) => {
+        console.log(response);
+        this.loading = false;
+        this.updateResults(source, response);
+      });
+    } else {
       console.log("scraping google");
       this.bialysis.bialysis(this.search, source).then((response) => {
         console.log(response);
+        this.loading = false;
         this.updateResults(source, response);
       }).catch((err) => { console.log(err) });
-    // }
+    }
   }
   analyzeAll() {
     for (var source in this.sources) {
