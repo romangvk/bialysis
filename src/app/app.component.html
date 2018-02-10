@@ -1,5 +1,12 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-    {{ title }}
+<div>
+  <input [value]=search (input)="search = $event.target.value" placeholder="type a topic to search">
+  <ul>
+    <li *ngFor="let source of Object.keys(sources)">
+      {{source}}
+    </li>
+    <li>
+      <input [value]=newsource (input)="newsource = $event.target.value"/>
+      <input type=button [disabled]="newsource.length" (click)="addSource(newsource)" text="+">
+    </li>
+  </ul>
 </div>
-
