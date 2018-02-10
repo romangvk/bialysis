@@ -1,0 +1,26 @@
+<div align="center">
+
+    <label>
+
+      <input [(ngModel)]="topic" placeholder="Topic to Analyze">
+
+    </label>
+
+    <ul class="inputList">
+
+        <li *ngFor="let input of inputList">
+
+          <span>{{input}}</span>
+
+        </li>
+
+          <!-- FOR EACH SOURCE IN THE ARRAY, SEND RESPONSE DATA TO A NEW RESULT BOX -->
+
+              <input [(ngModel)]="input" placeholder="New Source">
+              <br>
+              <button (click)="addSource(input)">Add Another Source</button>
+    </ul>
+
+    <button (click)="callRequest(topic, input)">Analyze</button>
+
+</div>

@@ -1,12 +1,10 @@
-<div>
-  <input [value]=search (input)="search = $event.target.value" placeholder="type a topic to search">
-  <ul>
-    <li *ngFor="let source of Object.keys(sources)">
-      {{source}}
-    </li>
-    <li>
-      <input [value]=newsource (input)="newsource = $event.target.value"/>
-      <input type=button [disabled]="newsource.length" (click)="addSource(newsource)" text="+">
-    </li>
-  </ul>
-</div>
+<!--The content below is only a placeholder and can be replaced.-->
+<!-- WE ARE NOW INSIDE APP-ROOT/app.component.ts-->
+
+  <h1 align="center">
+    BIALYSIS is working
+  </h1>
+
+  <!--- HERE WE BUILD THE INPUT COMPONENT AND RESULT COMPONENT -->
+  <app-input-fields></app-input-fields>
+
