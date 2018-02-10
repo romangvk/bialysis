@@ -1,10 +1,49 @@
-body {
-	align-items:center;
-	text-align: center;
-}
-
 ul {
     list-style-type: none;
-    margin: 0;
-    padding: 0;
+    margin-top: 10px;
+   	margin-bottom: 10px;
+}
+
+b {
+  font-family: sans-serif;
+}
+
+div {
+  padding: 10px;
+}
+
+.absolute {
+  position: absolute;
+  width: 75%;
+  height: 20%;
+  background-color: #fdd;
+  opacity: 0.7;
+}
+
+.relative {
+  position: relative;
+  height: 80px;
+  background-color: #cfc;
+  opacity: 0.7;
+}
+
+#topleft {
+  top: 5px;
+  left: 10px;
+}
+
+#showresults {
+  top: 30px;
+  margin: 0px 50px 0px 50px;
+}
+
+#inputsources {
+  top: 15px;
+  left: 20px;
+  margin: 0px 50px 0px 50px;
+}
+
+#sourcelist {
+  top: 10px;
+  right: 10px;
 }

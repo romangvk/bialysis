@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BialysisService } from './bialysis.service';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -9,9 +10,10 @@ export class AppComponent {
   search;
   sources;
   newsource;
+
   constructor(private bialysis: BialysisService) {
     this.search = null;
-    this.sources = {};
+    this.sources = [];
     this.newsource = "";
   }
   // ngOnInit() {
@@ -25,7 +27,10 @@ export class AppComponent {
   // }
   addSource(source) {
     this.sources[source] = {};
+    //this.sources.length = this.sources.length + 1;
+    console.log(this);
     console.log(this.sources);
+    console.log(this.sources.length);
   }
   removeSource(source) {
     delete this.sources[source];
@@ -38,9 +43,9 @@ export class AppComponent {
       console.log(response);
       this.updateResults(source, response);
     }).catch((err) => { console.log(err) });
-    // this.bialysis.test().then((response) => {
-    //   console.log(response);
-    // });
+     this.bialysis.test().then((response) => {
+       console.log(response);
+     });
   }
   analyzeAll() {
     for(var source in this.sources) {

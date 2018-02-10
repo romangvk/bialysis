@@ -1,10 +1,22 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <!-- WE ARE NOW INSIDE APP-ROOT/app.component.ts-->
+<div align="center" z-index="1" position="absolute">
+    <label>
+      <input [(ngModel)]="search" placeholder="Topic to Analyze">
+    </label>
 
-  <h1 align="center">
-    BIALYSIS is working
-  </h1>
+    <ul class="sources">
+        <li *ngFor="let newsource of sources ">
+          <!-- let newsource of function, create an array of mapped/iterable thing we want to display as newsource-->
+          <span>{{newsource}}</span>
+        </li>
+          <!-- FOR EACH SOURCE IN THE ARRAY, SEND RESPONSE DATA TO A NEW RESULT BOX -->
+            <input [(ngModel)]="newsource" placeholder="New Source">
+            <br>
+            <button (click)="addSource(newsource)">Add Another Source</button>
+    </ul>
 
-  <!--- HERE WE BUILD THE INPUT COMPONENT AND RESULT COMPONENT -->
-  <app-input-fields></app-input-fields>
+    <button (click)="analyzeAll()">Analyze</button>
+
+</div>
 
