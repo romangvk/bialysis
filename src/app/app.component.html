@@ -1,22 +1,24 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <!-- WE ARE NOW INSIDE APP-ROOT/app.component.ts-->
 <div align="center" z-index="1" position="absolute">
-    <label>
-      <input [value]="search" (input)="search = $event.target.value" placeholder="Topic to Analyze">
-    </label>
+  <label>
+    <input [value]="search" (input)="search = $event.target.value" placeholder="Topic to Analyze">
+  </label>
 
-    <ul class="sources">
-        <li *ngFor="let newsource of Object.keys(sources)">
-          <!-- let newsource of function, create an array of mapped/iterable thing we want to display as newsource-->
-          <span>{{newsource}}</span>
-        </li>
-          <!-- FOR EACH SOURCE IN THE ARRAY, SEND RESPONSE DATA TO A NEW RESULT BOX -->
-            <input [value]="newsource" (input)="newsource = $event.target.value" placeholder="New Source">
-            <br>
-            <button (click)="addSource(newsource)">Add Another Source</button>
-    </ul>
+  <ul class="sources">
+    <div *ngIf="sources">
+      <li *ngFor="let key of objectkeys(sources)">
+        <!-- let newsource of function, create an array of mapped/iterable thing we want to display as newsource-->
+        <span>{{key}}</span>
+        <span>{{sources[key].results}}</span>
+      </li>
+    </div>
+    <!-- FOR EACH SOURCE IN THE ARRAY, SEND RESPONSE DATA TO A NEW RESULT BOX -->
+    <input [value]="newsource" (input)="newsource = $event.target.value" placeholder="New Source">
+    <br>
+    <button (click)="addSource(newsource)">Add Another Source</button>
+  </ul>
 
-    <button (click)="analyzeAll()">Analyze</button>
+  <input type=button (click)="analyzeAll()" value="Analyze">
 
 </div>
-
